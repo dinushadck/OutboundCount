@@ -194,6 +194,6 @@ server.get('/ExecuteQuery', function (req, res, next)
     next();
 });
 
-server.listen(8045, function() {
+server.listen(config.Port, function() {
     console.log('%s listening at %s', server.name, server.url);
 });
