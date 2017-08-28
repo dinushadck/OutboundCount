@@ -95,7 +95,7 @@ var server = restify.createServer();
 
 var queryExecute = function(qDate, resId, sipUser)
 {
-    var query1 = "SELECT COUNT (*), SUM(\"BillSec\") FROM \"CSDB_CallCDRProcesseds\" WHERE \"DVPCallDirection\" = 'outbound' AND (\"SipFromUser\" = '" + sipUser + "' OR \"SipToUser\" = '" + sipUser + "') AND \"CreatedTime\"::date=date('" + qDate + "')";
+    var query1 = "SELECT COUNT (*), SUM(\"BillSec\") FROM \"CSDB_CallCDRProcesseds\" WHERE \"DVPCallDirection\" = 'outbound' AND \"SipFromUser\" = '" + sipUser + "' AND \"CreatedTime\"::date=date('" + qDate + "')";
 
     dbModel.SequelizeConn.query(query1, { type: dbModel.SequelizeConn.QueryTypes.SELECT})
         .then(function(outCallCount)

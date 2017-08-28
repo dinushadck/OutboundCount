@@ -4,27 +4,27 @@
 module.exports = {
     "DB": {
         "Type":"postgres",
-        "User":"duo",
+        "User":"postgres",
         "Password":"DuoS123",
         "Port":5432,
-        "Host":"104.236.231.11",
-        "Database":"duo"
+        "Host":"192.168.3.3",
+        "Database":"pickme"
     },
 
     "Mongo":
     {
-        "ip":"104.236.231.11",
+        "ip":"192.168.3.3",
         "port":"27017",
-        "dbname":"dvpdb",
+        "dbname":"facetone",
         "password":"DuoS123",
         "user":"duo",
-        "replicaset" :"104.236.231.11"
+        "replicaset" :"192.168.3.3"
     },
 
-    "CompanyId": 103,
+    "CompanyId": 4,
     "TenantId": 1,
-    "StartDate": '2017-08-18',
-    "EndDate": '2017-08-23',
+    "StartDate": '2017-08-21',
+    "EndDate": '2017-08-28',
     "Port": 8045
 };
 
