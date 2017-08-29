@@ -93,9 +93,9 @@ process.on('SIGINT', function() {
 
 var server = restify.createServer();
 
-var queryExecute = function(qDate, resId, sipUser)
+var queryExecute = function(qDate, sDate, eDate, resId, sipUser)
 {
-    var query1 = "SELECT COUNT (*), SUM(\"BillSec\") FROM \"CSDB_CallCDRProcesseds\" WHERE \"DVPCallDirection\" = 'outbound' AND \"SipFromUser\" = '" + sipUser + "' AND \"CreatedTime\"::date=date('" + qDate + "')";
+    var query1 = "SELECT COUNT (*), SUM(\"BillSec\") FROM \"CSDB_CallCDRProcesseds\" WHERE \"DVPCallDirection\" = 'outbound' AND \"CompanyId\" = '" + companyId + "' AND \"TenantId\" = '" + tenantId + "' AND \"SipFromUser\" = '" + sipUser + "' AND \"CreatedTime\" >= '" + sDate + "' AND \"CreatedTime\" <= '" + eDate + "'";
 
     dbModel.SequelizeConn.query(query1, { type: dbModel.SequelizeConn.QueryTypes.SELECT})
         .then(function(outCallCount)
@@ -171,7 +171,9 @@ server.get('/ExecuteQuery', function (req, res, next)
 
                                 daysArr.forEach(function(day)
                                 {
-                                    queryExecute(day, resId, sipUsername);
+                                    var sDate = day + ' 00:00:00+05:30';
+                                    var eDate = day + ' 23:59:59+05:30';
+                                    queryExecute(day, sDate, eDate, resId, sipUsername);
                                 });
 
 
